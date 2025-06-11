@@ -1,14 +1,12 @@
-import { UserInfo } from "@/lib/sign-up";
-import { Dispatch, SetStateAction } from "react";
 import { Calendar } from "../ui/calendar";
 
 const SignUpCalendar = ({
-  userInfo,
-  setUserInfo,
+  value,
+  onChange,
   description,
 }: {
-  userInfo: UserInfo;
-  setUserInfo: Dispatch<SetStateAction<UserInfo>>;
+  value?: Date;
+  onChange: (date?: Date) => void;
   description?: string;
 }) => {
   return (
@@ -16,10 +14,8 @@ const SignUpCalendar = ({
       {description}
       <Calendar
         mode="single"
-        selected={userInfo.birthDate}
-        onSelect={(date) => {
-          setUserInfo((p) => ({ ...p, birthDate: date }));
-        }}
+        selected={value}
+        onSelect={onChange}
         captionLayout="dropdown"
       />
     </label>
